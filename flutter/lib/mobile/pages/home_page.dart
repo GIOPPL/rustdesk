@@ -150,7 +150,8 @@ class HomePageState extends State<HomePage> {
         ],
       );
     }
-    return Text(bind.mainGetAppNameSync());
+    // return Text(bind.mainGetAppNameSync());
+    return Text("中移铁通远控助手");
   }
 }
 
