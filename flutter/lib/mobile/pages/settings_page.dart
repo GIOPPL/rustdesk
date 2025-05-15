@@ -820,21 +820,21 @@ class _SettingsState extends State<SettingsPage> with WidgetsBindingObserver {
                   child: Text(_buildDate),
                 ),
                 leading: Icon(Icons.query_builder)),
-            if (isAndroid)
-              SettingsTile(
-                  onPressed: (context) => onCopyFingerprint(_fingerprint),
-                  title: Text(translate("Fingerprint")),
-                  value: Padding(
-                    padding: EdgeInsets.symmetric(vertical: 8),
-                    child: Text(_fingerprint),
-                  ),
-                  leading: Icon(Icons.fingerprint)),
-            SettingsTile(
-              title: Text(translate("Privacy Statement")),
-              onPressed: (context) =>
-                  launchUrlString('https://rustdesk.com/privacy.html'),
-              leading: Icon(Icons.privacy_tip),
-            )
+            // if (isAndroid)
+            //   SettingsTile(
+            //       onPressed: (context) => onCopyFingerprint(_fingerprint),
+            //       title: Text(translate("Fingerprint")),
+            //       value: Padding(
+            //         padding: EdgeInsets.symmetric(vertical: 8),
+            //         child: Text(_fingerprint),
+            //       ),
+            //       leading: Icon(Icons.fingerprint)),
+            // SettingsTile(
+            //   title: Text(translate("Privacy Statement")),
+            //   onPressed: (context) =>
+            //       launchUrlString('https://rustdesk.com/privacy.html'),
+            //   leading: Icon(Icons.privacy_tip),
+            // )
           ],
         ),
       ],
