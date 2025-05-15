@@ -807,10 +807,11 @@ class _SettingsState extends State<SettingsPage> with WidgetsBindingObserver {
                 title: Text(translate("Version: ") + version),
                 value: Padding(
                   padding: EdgeInsets.symmetric(vertical: 8),
-                  child: Text('rustdesk.com',
-                      style: TextStyle(
-                        decoration: TextDecoration.underline,
-                      )),
+                  child: Text('中移铁通',
+                      // style: TextStyle(
+                      //   decoration: TextDecoration.underline,
+                      // )
+                    ),
                 ),
                 leading: Icon(Icons.info)),
             SettingsTile(
