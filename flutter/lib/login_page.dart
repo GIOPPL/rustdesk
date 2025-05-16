@@ -6,7 +6,6 @@ import 'package:flutter/material.dart' hide Key;
 import 'package:flutter_hbb/mobile/pages/home_page.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:http/http.dart' as http;
-import 'package:toastification/toastification.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -64,13 +63,11 @@ class _LoginPageState extends State<LoginPage> {
     );
 
     if (response.statusCode == 200) {
-      // ScaffoldMessenger.of(context).showSnackBar(snackBar);
-      toastification.show(context: context, title: Text('成功'),);
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
       Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomePage()));
       return json.decode(response.body);
     } else {
-      toastification.show(context: context, title: Text('失败 ${response.statusCode}'),);
-      // ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Failed to send data: ${response.statusCode}')));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Failed to send data: ${response.statusCode}')));
       // Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomePage()));
       Navigator.of(context).pushReplacement(
           MaterialPageRoute(builder: (context) => HomePage())
