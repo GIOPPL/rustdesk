@@ -57,18 +57,18 @@ class _LoginPageState extends State<LoginPage> {
     map['username'] = _accountController.value.text;
     map['password'] = _pwdController.value.text;
 
-    final response = await dio.post('http://118.178.186.181:8080/jwt/token');
+    // final response = await dio.post('http://118.178.186.181:8080/jwt/token');
     // Map<String, dynamic> userMap = jsonDecode(response.toString());
 
 
-    // final response = await http.post(
-    //   Uri.parse('http://118.178.186.181:8080/jwt/token'),
-    //   headers: <String, String>{
-    //     'Content-Type': 'application/json; charset=UTF-8',
-    //   },
-    //   body: jsonEncode(map), // 将Map转换为JSON字符串
-    // );
-    //
+    final response = await http.post(
+      Uri.parse('http://118.178.186.181:8080/jwt/token'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(map), // 将Map转换为JSON字符串
+    );
+
     if (response.statusCode == 200) {
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
       Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => HomePage()));
