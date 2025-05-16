@@ -6,7 +6,6 @@ import 'package:flutter/material.dart' hide Key;
 import 'package:flutter_hbb/mobile/pages/home_page.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:http/http.dart' as http;
-import 'package:fluttertoast/fluttertoast.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -64,29 +63,11 @@ class _LoginPageState extends State<LoginPage> {
     );
 
     if (response.statusCode == 200) {
-      // ScaffoldMessenger.of(context).showSnackBar(snackBar);
-      Fluttertoast.showToast(
-          msg: "成功",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.CENTER,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Colors.red,
-          textColor: Colors.white,
-          fontSize: 16.0
-      );
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
       Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomePage()));
       return json.decode(response.body);
     } else {
-      // ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Failed to send data: ${response.statusCode}')));
-      Fluttertoast.showToast(
-          msg: "失败",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.CENTER,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Colors.red,
-          textColor: Colors.white,#
-          fontSize: 16.0
-      );
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Failed to send data: ${response.statusCode}')));
       // Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomePage()));
       Navigator.of(context).pushReplacement(
           MaterialPageRoute(builder: (context) => HomePage())
