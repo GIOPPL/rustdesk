@@ -6,8 +6,6 @@ import 'package:flutter/material.dart' hide Key;
 import 'package:flutter_hbb/mobile/pages/home_page.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:http/http.dart' as http;
-import 'package:dio/dio.dart';
-
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -18,7 +16,7 @@ class LoginPage extends StatefulWidget {
 
 var _inputAccount = '';
 var _inputPwd = '';
-final dio = Dio();
+
 class _LoginPageState extends State<LoginPage> {
   final _accountController = TextEditingController.fromValue(TextEditingValue(
       text: _inputAccount,
@@ -50,17 +48,12 @@ class _LoginPageState extends State<LoginPage> {
 
   Future<void> login(context) async {
 
-    final snackBar = SnackBar(content: Text('登录成功123'));
-    final snackBar2 = SnackBar(content: Text('登录失败123'));
+    final snackBar = SnackBar(content: Text('登录成功'));
+    final snackBar2 = SnackBar(content: Text('登录失败'));
     ///点击登录
     Map<String, dynamic> map = {};
     map['username'] = _accountController.value.text;
     map['password'] = _pwdController.value.text;
-
-    // final response = await dio.post('http://118.178.186.181:8080/jwt/token');
-    // Map<String, dynamic> userMap = jsonDecode(response.toString());
-
-
     final response = await http.post(
       Uri.parse('http://118.178.186.181:8080/jwt/token'),
       headers: <String, String>{
@@ -71,11 +64,14 @@ class _LoginPageState extends State<LoginPage> {
 
     if (response.statusCode == 200) {
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
-      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => HomePage()));
+
+      Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => HomePage())
+      );
       return json.decode(response.body);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Failed to send data: ${response.statusCode}')));
-      // Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomePage()));
+
       Navigator.of(context).pushReplacement(
           MaterialPageRoute(builder: (context) => HomePage())
       );
